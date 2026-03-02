@@ -1,7 +1,6 @@
-
 # 📘 Git Engineering Handbook Documentation
 
-A professional Git Engineering handbook covering essential commands, branching strategies, rebase vs merge, trunk-based development, and advanced Git workflows.
+A professional Git Engineering handbook covering essential commands, branching strategies, commit strategies, trunk-based development vs Gitflow, and CI/CD pipelines.
 
 This project is built using **MkDocs** and deployed automatically via **GitHub Actions** to **GitHub Pages**.
 
@@ -112,7 +111,6 @@ http://127.0.0.1:8000
 
 * Provide a clear Git learning path
 * Explain real-world professional workflows
-* Demonstrate production-grade documentation setup
 * Showcase CI/CD integration
 
 ---
@@ -122,7 +120,7 @@ http://127.0.0.1:8000
 Contributions, suggestions, and improvements are welcome.
 
 1. Fork the repository
-2. Create a feature branch
+2. Create a "feature" branch
 3. Submit a Pull Request
 
 ---
