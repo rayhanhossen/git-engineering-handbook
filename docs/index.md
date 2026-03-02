@@ -4,7 +4,7 @@ This documentation explains:
 
 - Why Git is essential for developers
 - Core Git concepts
-- Daily Git commands
+- Basic Git commands
 - Advanced professional Git workflows
 - Branching strategy
 - Professional commit standards
