@@ -57,6 +57,10 @@ https://rayhanhossen.github.io/git-engineering-handbook/
 * Atomic commits
 * Conventional commits
 
+### 🔹 CI/CD Pipelines
+
+* How to Deploy Using CI/CD
+
 ---
 
 ## 🛠 Tech Stack
