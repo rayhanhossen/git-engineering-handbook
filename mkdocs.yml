@@ -41,10 +41,10 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Why Git: why-git.md
-  - Git Basics: git-basics.md
-  - Daily Commands: git-daily-commands.md
-  - Professional Commands: git-professional-commands.md
+  - Git Basics: basics.md
+  - Basic Commands: basic-commands.md
+  - Advanced Commands: advanced-commands.md
   - Branching Strategy: branching-strategy.md
   - Commit Strategy: commit-strategy.md
   - CI/CD Pipelines: ci-cd-pipelines.md
-  - Cheat Sheet: git-cheat-sheet.md
+  - Cheat Sheet: cheat-sheet.md
