@@ -1,4 +1,4 @@
-While daily commands get your code from your machine to the repository, professional commands are about managing history, debugging efficiently, and safely undoing mistakes. 
+While basic commands get your code from your machine to the repository, advanced commands are about managing history, debugging efficiently, and safely undoing mistakes. 
 
 ### 1. History Rewriting & Clean Up
 A clean Git history is essential for code reviews and automated CI/CD pipelines. These commands help you polish your commits before sharing them.
