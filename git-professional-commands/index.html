@@ -1,0 +1,992 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Professional Git workflow documentation">
+      
+      
+        <meta name="author" content="Rayhan Hossen">
+      
+      
+      
+        <link rel="prev" href="../git-daily-commands/">
+      
+      
+        <link rel="next" href="../branching-strategy/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Professional Commands - Git Engineering Handbook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-history-rewriting-clean-up" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Git Engineering Handbook" class="md-header__button md-logo" aria-label="Git Engineering Handbook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Git Engineering Handbook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Professional Commands
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../why-git/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Why Git
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../git-basics/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Git Basics
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../git-daily-commands/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Daily Commands
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Professional Commands
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../branching-strategy/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Branching Strategy
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../commit-strategy/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Commit Strategy
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ci-cd-pipelines/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  CI/CD Pipelines
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../git-cheat-sheet/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Cheat Sheet
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Git Engineering Handbook" class="md-nav__button md-logo" aria-label="Git Engineering Handbook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Git Engineering Handbook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why-git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Why Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git-daily-commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Daily Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Professional Commands
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Professional Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-history-rewriting-clean-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. History Rewriting &amp; Clean Up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-advanced-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Advanced Debugging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-precision-context-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Precision Context Switching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-ultimate-safety-net" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. The Ultimate Safety Net
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-precision-staging-patch-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Precision Staging (Patch Mode)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-safe-reversals-public-vs-private-undos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Safe Reversals (Public vs. Private Undos)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-parallel-development-worktrees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Parallel Development (Worktrees)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-deep-code-searching-the-pickaxe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Deep Code Searching (The "Pickaxe")
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Branching Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commit-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commit Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ci-cd-pipelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD Pipelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git-cheat-sheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-history-rewriting-clean-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. History Rewriting &amp; Clean Up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-advanced-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Advanced Debugging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-precision-context-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Precision Context Switching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-ultimate-safety-net" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. The Ultimate Safety Net
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-precision-staging-patch-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Precision Staging (Patch Mode)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-safe-reversals-public-vs-private-undos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Safe Reversals (Public vs. Private Undos)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-parallel-development-worktrees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Parallel Development (Worktrees)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-deep-code-searching-the-pickaxe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Deep Code Searching (The "Pickaxe")
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Professional Commands</h1>
+
+<p>While daily commands get your code from your machine to the repository, professional commands are about managing history, debugging efficiently, and safely undoing mistakes. </p>
+<h3 id="1-history-rewriting-clean-up">1. History Rewriting &amp; Clean Up</h3>
+<p>A clean Git history is essential for code reviews and automated CI/CD pipelines. These commands help you polish your commits before sharing them.</p>
+<ul>
+<li><strong><code>git commit --amend</code></strong>: Modifies the very last commit. Use this if you made a typo in your last commit message or forgot to stage a file, rather than creating a whole new "fix typo" commit.</li>
+<li><strong><code>git rebase -i HEAD~3</code></strong> (Interactive Rebase): Opens an interactive text editor allowing you to alter the last 3 commits. You can:<ul>
+<li><strong>Squash</strong>: Combine multiple small, messy commits into one clean commit.</li>
+<li><strong>Reword</strong>: Change the commit messages of older commits.</li>
+<li><strong>Drop</strong>: Completely delete specific commits from history.</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-advanced-debugging">2. Advanced Debugging</h3>
+<p>When a bug makes it into the codebase, these commands act as a forensic toolkit to figure out exactly when and how it happened.</p>
+<ul>
+<li><strong><code>git blame &lt;file-name&gt;</code></strong>: Annotates each line in the given file with information from the commit that last modified it, including the author and the commit hash. It is invaluable for figuring out who to ask about a specific block of code.</li>
+<li><strong><code>git bisect</code></strong>: Automates the process of finding exactly which commit introduced a bug using a binary search. You tell Git a "bad" commit (where the bug exists) and a "good" commit (where it didn't), and Git will automatically check out commits in between for you to test until you isolate the exact culprit.</li>
+</ul>
+<h3 id="3-precision-context-switching">3. Precision Context Switching</h3>
+<p>Sometimes you need to move specific pieces of code around without merging entire branches.</p>
+<ul>
+<li><strong><code>git stash</code></strong>: Takes your uncommitted, modified files and saves them away on a temporary stack, returning your working directory to a clean state. Perfect for when you need to urgently switch branches to fix a bug but aren't ready to commit your current work.</li>
+<li><strong><code>git stash pop</code></strong>: Reapplies the most recently stashed changes back onto your current working directory and removes them from the stash stack.</li>
+<li><strong><code>git cherry-pick &lt;commit-hash&gt;</code></strong>: Takes the exact changes introduced by a single commit on another branch and applies them to your current branch. This is heavily used to backport bug fixes to older release branches.</li>
+</ul>
+<h3 id="4-the-ultimate-safety-net">4. The Ultimate Safety Net</h3>
+<ul>
+<li><strong><code>git reflog</code></strong>: Short for "reference logs". Git secretly records every single time your <code>HEAD</code> pointer moves, even if you delete a branch, do a hard reset, or mess up a rebase. If you ever "lose" code in Git, <code>git reflog</code> will give you the hash needed to restore it. It is your ultimate undo button.</li>
+</ul>
+<h3 id="5-precision-staging-patch-mode">5. Precision Staging (Patch Mode)</h3>
+<p>Often, you might make several unrelated changes in a single file before realizing you should have committed them separately. Patch mode saves you from committing everything at once.</p>
+<ul>
+<li><strong><code>git add -p</code></strong> (or <code>--patch</code>): Instead of staging a whole file, Git walks you through every modified chunk (hunk) of code and asks if you want to stage it. This is essential for creating clean, atomic commits—for example, staging a UI fix in a React component without staging the unfinished Django API call you were also testing in the same file.</li>
+</ul>
+<h3 id="6-safe-reversals-public-vs-private-undos">6. Safe Reversals (Public vs. Private Undos)</h3>
+<p>Knowing how to undo a mistake depends entirely on whether you have pushed your code to a shared repository yet.</p>
+<ul>
+<li><strong><code>git revert &lt;commit-hash&gt;</code></strong>: The only safe way to undo a mistake on a shared branch (like <code>main</code> or <code>dev</code>). Instead of deleting the bad commit (which breaks history for everyone else), <code>git revert</code> creates a <em>brand new commit</em> that does the exact mathematical opposite of the target commit.</li>
+<li><strong><code>git reset --hard &lt;commit-hash&gt;</code></strong>: A destructive command. It moves your branch pointer back to a specific commit and permanently wipes out all uncommitted changes in your working directory. Use this only for local branches that haven't been pushed.</li>
+</ul>
+<h3 id="7-parallel-development-worktrees">7. Parallel Development (Worktrees)</h3>
+<p>Sometimes stashing isn't enough. If you need to run two branches at the exact same time, worktrees are the professional solution.</p>
+<ul>
+<li><strong><code>git worktree add &lt;path&gt; &lt;branch&gt;</code></strong>: Allows you to check out multiple branches simultaneously in separate directories on your machine, all linked to the same local repository. This is a game-changer when you are running a heavy local environment (like an ELK stack or Dockerized load balancer) on your feature branch, but need to instantly review a teammate's PR on a separate branch without tearing down your current environment.</li>
+<li><strong><code>git worktree list</code></strong>: Shows all active worktrees and their associated branches.</li>
+<li><strong><code>git worktree remove &lt;path&gt;</code></strong>: Safely deletes the worktree directory when you are done.</li>
+</ul>
+<h3 id="8-deep-code-searching-the-pickaxe">8. Deep Code Searching (The "Pickaxe")</h3>
+<p>When <code>git blame</code> isn't enough because the code was deleted months ago, you need to search the entire repository history.</p>
+<ul>
+<li><strong><code>git log -S "search_string"</code></strong>: Searches the entire commit history for commits that specifically added or removed a given string (like a specific variable name, a deleted function, or a lost API key). </li>
+<li><strong><code>git log --grep="search_string"</code></strong>: Searches through commit <em>messages</em> rather than the actual code changes. Useful for finding all commits related to a specific issue number (e.g., <code>--grep="Resolves: #42"</code>).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
