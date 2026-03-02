@@ -2,7 +2,7 @@
 
 A clean, practical Git cheat sheet — the kind you actually use daily, not the 200-command monster nobody remembers. Organized by real-world workflow.
 
-## 🧠 1. Setup & Config (One-time stuff)
+## 1. Setup & Config (One-time stuff)
 
 ```bash
 git config --global user.name "Your Name"
@@ -12,7 +12,7 @@ git config --list
 
 ```
 
-## 📦 2. Starting a Repository
+## 2. Starting a Repository
 
 **Create new repo**
 
@@ -28,7 +28,7 @@ git clone <repo-url>
 
 ```
 
-## 📝 3. Daily Workflow (Most Used Commands)
+## 3. Daily Workflow (Most Used Commands)
 
 **Check status**
 
@@ -60,7 +60,7 @@ git log --oneline --graph --decorate
 
 ```
 
-## 🌿 4. Branching (Super Important)
+## 4. Branching (Super Important)
 
 **Create branch**
 
@@ -95,7 +95,7 @@ git branch -a
 
 ```
 
-## 🔀 5. Merging
+## 5. Merging
 
 **Merge branch into current**
 
@@ -111,7 +111,7 @@ git rebase main
 
 ```
 
-## 🌍 6. Remote (GitHub / GitLab Workflow)
+## 6. Remote (GitHub / GitLab Workflow)
 
 **Add remote**
 
@@ -149,7 +149,7 @@ git fetch
 
 ```
 
-## 🔍 7. Investigating Code
+## 7. Investigating Code
 
 **Who changed a line?**
 
@@ -173,7 +173,7 @@ git diff file.js
 
 ```
 
-## ⏪ 8. Undo / Fix Mistakes (Very Important)
+## 8. Undo / Fix Mistakes (Very Important)
 
 **Unstage file**
 
@@ -200,11 +200,11 @@ git reset --soft HEAD~1
 
 ```bash
 git reset --hard HEAD~1
-# ⚠️ WARNING: --hard deletes changes permanently.
+# WARNING: --hard deletes changes permanently.
 
 ```
 
-## 🧳 9. Stashing (Temporary Save)
+## 9. Stashing (Temporary Save)
 
 ```bash
 git stash
@@ -214,7 +214,7 @@ git stash pop
 
 ```
 
-## 🏷️ 10. Tags (Releases)
+## 10. Tags (Releases)
 
 ```bash
 git tag v1.0
@@ -223,7 +223,7 @@ git push origin v1.0
 
 ```
 
-## 🔥 11. Emergency Commands
+## 11. Emergency Commands
 
 **Abort merge**
 
@@ -249,7 +249,7 @@ git reflog
 
 ---
 
-## 🚀 The 80/20 Rule (What You Actually Use Daily)
+## The 80/20 Rule (What You Actually Use Daily)
 
 If you remember just these, you’re already 80% covered:
 

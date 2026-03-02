@@ -12,7 +12,7 @@ This project is built using **MkDocs** and deployed automatically via **GitHub A
 🔗 **View the live site:**
 
 ```
-https://rayhanhossen.github.io/git-engineering-handbook/
+https://githandbook.rayhanhossen.pro
 ```
 
 ---

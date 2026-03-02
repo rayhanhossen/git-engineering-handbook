@@ -1,4 +1,4 @@
-# Git Engineering Guide
+# Git Engineering Handbook
 
 This documentation explains:
 
