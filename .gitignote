@@ -12,6 +12,7 @@ site/
 # IDE
 .idea/
 .vscode/
+**/.idea/
 
 # Mac
 .DS_Store
