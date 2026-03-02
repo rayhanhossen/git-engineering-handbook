@@ -1,0 +1,28 @@
+site_name: Git Engineering Handbook
+site_description: Professional Git workflow documentation
+site_author: Rayhan Hossen
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.tabbed
+
+nav:
+  - Home: index.md
+  - Why Git: why-git.md
+  - Git Basics: git-basics.md
+  - Daily Commands: git-daily-commands.md
+  - Professional Commands: git-professional-commands.md
+  - Branching Strategy: branching-strategy.md
+  - Commit Strategy: commit-strategy.md
+  - CI/CD Pipelines: ci-cd-pipelines.md
+  - Cheat Sheet: git-cheat-sheet.md
